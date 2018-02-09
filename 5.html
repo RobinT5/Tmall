@@ -1,0 +1,281 @@
+﻿<html><head></head><body>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/jquery/2.0.0/jquery.min.js"></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<style>
+
+.titleBar a{height:25px;
+color:black;
+text-decoration:none;
+display:inline-block;
+height:50px;
+width:90px;
+padding-left:20px;
+padding-top:10px;
+font-weight:bold;}
+
+.titleBar a:hover{
+color:#c40000;
+}
+
+.choosed{
+border-bottom:2px solid #c40000;
+color:#c40000!important;
+}
+
+.titleBar span{display:inline-block;
+height:20px;
+vertical-align:middle;
+border-right:1px solid lightgray;}
+.titleBar{height:50px;
+border-bottom:2px solid gray;
+}
+
+th{text-align:center;height:45px;
+font-weight:normal;
+font-size:12px;}
+
+.btn:hover{color:#c40000;
+border:1px solid #c40000;
+background-color:white;}
+</style>
+<script>
+$(function(){
+	$(".allItem").click(function(){
+		$(".titleBar a").removeClass("choosed");
+		$(this).addClass("choosed");
+		$(".all").show();
+	});
+	$(".payItem").click(function(){
+		$(".titleBar a").removeClass("choosed");
+		$(this).addClass("choosed");
+		$(".all").hide();
+		$(".waitPay").show();
+	});
+	$(".checkItem").click(function(){
+		$(".titleBar a").removeClass("choosed");
+		$(this).addClass("choosed");
+		$(".all").hide();
+		$(".waitCheck").show();
+	});
+	$(".deliveryItem").click(function(){
+		$(".titleBar a").removeClass("choosed");
+		$(this).addClass("choosed");
+		$(".all").hide();
+		$(".waitDelivery").show();
+	});
+	$(".talkItem").click(function(){
+		$(".titleBar a").removeClass("choosed");
+		$(this).addClass("choosed");
+		$(".all").hide();
+		$(".waitTalk").show();
+	});
+});
+</script>
+<body style="width:1100px;margin:0 auto;"> 
+	<div class="titleBar">
+			<a href="#" style="width:100px !important"class="allItem choosed">所有订单</a>
+			<span></span>
+			<a href="#"class="payItem">待付款</a>
+			<span></span>
+			<a href="#"class="deliveryItem">代发货</a>
+			<span></span>
+			<a href="#"class="checkItem">待收货</a>
+			<span></span>
+			<a href="#"class="talkItem">带评价</a>
+		
+	</div>
+	<table style="margin-top:20px;width:1100px;">
+		<tbody>
+			<tr style="background-color:lightgray;border:1px solid gray;">
+				<th style="width:599px;">宝贝</th>
+				<th style="width:125px;">单价</th>
+				<th style="width:125px;">数量</th>
+				<th style="width:125px;">死付款</th>
+				<th>交易操纵</th>
+			<tr>
+		</tbody>
+	</table>
+	<table class="all waitPay"style="margin-top:20px;width:1100px;border:1px solid gray;">
+		<tbody>
+			<tr style="height:50px;background-color:lightgray;">
+				<td style="padding-left:12px;font-size:12px;width:599px;">
+				<b>2016-09-12 17:00:41 </b>
+				<span>订单号: 20160912170041674794</span>
+				</td>
+				<td colspan="2"style="font-size:12px;">
+				<img src="smallTmall.png"style="height:12px;margin-left:25px;">
+				天猫商城
+				</td>
+				<td style="width:125px;">
+				</td>
+				<td>
+				<span style="color:gray;margin-left:50px;"class="glyphicon glyphicon-trash"></span>
+				</td>
+			<tr>
+			<tr>
+				<td style="width:599px;">
+				<img style="margin:10px 10px;width:100px;"src="item1.jpg">
+				<div style="display:inline-block;margin-left:20px;">
+					<a href="#"style="display:block;font-size:12px;margin-bottom:20px;">公众智能扫地机器人家用全自动电动清洁地毯擦拖地一体机吸尘器</a>
+					<div style="position:relative;top:40px;">
+						<img title="支持信用卡支付" src="site/creditcard.png">
+						<img title="消费者保障服务,承诺7天退货" src="site/7day.png">
+						<img title="消费者保障服务,承诺如实描述" src="site/promise.png">						
+					</div>
+				</div>
+				</td>
+				<td style="padding-left:20px;width:125px;border-right:1px solid gray;">
+					<span style="text-decoration:line-through;">￥1200.00</span><br/><span>￥1000.00</span>
+				</td>
+				<td style="width:125px;border-right:1px solid gray;"align="center" valign="top">
+				1
+				</td>
+				<td style="border-right:1px solid gray;"align="center" valign="top">
+				233
+				</td>
+				<td align="center">
+					<button style="position:relative;top:-10px;"class="btn btn-default">付款</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table class="all waitDelivery"style="margin-top:20px;width:1100px;border:1px solid gray;">
+		<tbody>
+			<tr style="height:50px;background-color:lightgray;">
+				<td style="padding-left:12px;font-size:12px;width:599px;">
+				<b>2016-09-12 17:00:41 </b>
+				<span>订单号: 20160912170041674794</span>
+				</td>
+				<td colspan="2"style="font-size:12px;">
+				<img src="smallTmall.png"style="height:12px;margin-left:25px;">
+				天猫商城
+				</td>
+				<td style="width:125px;">
+				</td>
+				<td>
+				<span style="color:gray;margin-left:50px;"class="glyphicon glyphicon-trash"></span>
+				</td>
+			<tr>
+			<tr>
+				<td style="width:599px;">
+				<img style="margin:10px 10px;width:100px;"src="item1.jpg">
+				<div style="display:inline-block;margin-left:20px;">
+					<a href="#"style="display:block;font-size:12px;margin-bottom:20px;">公众智能扫地机器人家用全自动电动清洁地毯擦拖地一体机吸尘器</a>
+					<div style="position:relative;top:40px;">
+						<img title="支持信用卡支付" src="site/creditcard.png">
+						<img title="消费者保障服务,承诺7天退货" src="site/7day.png">
+						<img title="消费者保障服务,承诺如实描述" src="site/promise.png">						
+					</div>
+				</div>
+				</td>
+				<td style="padding-left:20px;width:125px;border-right:1px solid gray;">
+					<span style="text-decoration:line-through;">￥1200.00</span><br/><span>￥1000.00</span>
+				</td>
+				<td style="width:125px;border-right:1px solid gray;"align="center" valign="top">
+				1
+				</td>
+				<td style="border-right:1px solid gray;"align="center" valign="top">
+				233
+				</td>
+				<td align="center">
+					<button style="position:relative;top:-10px;"class="btn btn-default">发货</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table class="all waitCheck"style="margin-top:20px;width:1100px;border:1px solid gray;">
+		<tbody>
+			<tr style="height:50px;background-color:lightgray;">
+				<td style="padding-left:12px;font-size:12px;width:599px;">
+				<b>2016-09-12 17:00:41 </b>
+				<span>订单号: 20160912170041674794</span>
+				</td>
+				<td colspan="2"style="font-size:12px;">
+				<img src="smallTmall.png"style="height:12px;margin-left:25px;">
+				天猫商城
+				</td>
+				<td style="width:125px;">
+				</td>
+				<td>
+				<span style="color:gray;margin-left:50px;"class="glyphicon glyphicon-trash"></span>
+				</td>
+			<tr>
+			<tr>
+				<td style="width:599px;">
+				<img style="margin:10px 10px;width:100px;"src="item1.jpg">
+				<div style="display:inline-block;margin-left:20px;">
+					<a href="#"style="display:block;font-size:12px;margin-bottom:20px;">公众智能扫地机器人家用全自动电动清洁地毯擦拖地一体机吸尘器</a>
+					<div style="position:relative;top:40px;">
+						<img title="支持信用卡支付" src="site/creditcard.png">
+						<img title="消费者保障服务,承诺7天退货" src="site/7day.png">
+						<img title="消费者保障服务,承诺如实描述" src="site/promise.png">						
+					</div>
+				</div>
+				</td>
+				<td style="padding-left:20px;width:125px;border-right:1px solid gray;">
+					<span style="text-decoration:line-through;">￥1200.00</span><br/><span>￥1000.00</span>
+				</td>
+				<td style="width:125px;border-right:1px solid gray;"align="center" valign="top">
+				1
+				</td>
+				<td style="border-right:1px solid gray;"align="center" valign="top">
+				233
+				</td>
+				<td align="center">
+					<button style="position:relative;top:-10px;"class="btn">收货</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table class="all waitTalk"style="margin-top:20px;width:1100px;border:1px solid gray;">
+		<tbody>
+			<tr style="height:50px;background-color:lightgray;">
+				<td style="padding-left:12px;font-size:12px;width:599px;">
+				<b>2016-09-12 17:00:41 </b>
+				<span>订单号: 20160912170041674794</span>
+				</td>
+				<td colspan="2"style="font-size:12px;">
+				<img src="smallTmall.png"style="height:12px;margin-left:25px;">
+				天猫商城
+				</td>
+				<td style="width:125px;">
+				</td>
+				<td>
+				<span style="color:gray;margin-left:50px;"class="glyphicon glyphicon-trash"></span>
+				</td>
+			<tr>
+			<tr>
+				<td style="width:599px;">
+				<img style="margin:10px 10px;width:100px;"src="item1.jpg">
+				<div style="display:inline-block;margin-left:20px;">
+					<a href="#"style="display:block;font-size:12px;margin-bottom:20px;">公众智能扫地机器人家用全自动电动清洁地毯擦拖地一体机吸尘器</a>
+					<div style="position:relative;top:40px;">
+						<img title="支持信用卡支付" src="site/creditcard.png">
+						<img title="消费者保障服务,承诺7天退货" src="site/7day.png">
+						<img title="消费者保障服务,承诺如实描述" src="site/promise.png">						
+					</div>
+				</div>
+				</td>
+				<td style="padding-left:20px;width:125px;border-right:1px solid gray;">
+					<span style="text-decoration:line-through;">￥1200.00</span><br/><span>￥1000.00</span>
+				</td>
+				<td style="width:125px;border-right:1px solid gray;"align="center" valign="top">
+				1
+				</td>
+				<td style="border-right:1px solid gray;"align="center" valign="top">
+				233
+				</td>
+				<td align="center">
+					<button style="position:relative;top:-10px;"class="btn btn-default">评价</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>

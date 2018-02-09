@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/jquery/2.0.0/jquery.min.js"></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+<script>
+
+
+function formatMoney(num){
+    num = num.toString().replace(/\$|\,/g,'');  
+    if(isNaN(num))  
+        num = "0";  
+    sign = (num == (num = Math.abs(num)));  
+    num = Math.floor(num*100+0.50000000001);  
+    cents = num%100;  
+    num = Math.floor(num/100).toString();  
+    if(cents<10)  
+    cents = "0" + cents;  
+    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)  
+    num = num.substring(0,num.length-(4*i+3))+','+  
+    num.substring(num.length-(4*i+3));  
+    return (((sign)?'':'-') + num + '.' + cents);  
+}
+
+
+
+
+
+
+
+
+
+
+function synThreeTotal(){
+	var totalMoney=0;
+	var sumNumber=0;
+	$("tr").each(function(){
+		if($(this).attr("selectit")=="yes")
+		{totalMoney=totalMoney+parseInt($(this).find(".eachTotalMoney").html());
+		 sumNumber=sumNumber+parseInt($(this).find("input").val());
+		 }
+	});
+	$(".totalMoney").each(function(){
+		$(this).text(formatMoney(totalMoney));
+	});
+	$(".sumNumber").text(sumNumber);
+}
+function buttonDisplay(){
+	var check=false;
+	$("tr").each(function(){
+		if($(this).attr("selectit")=="yes")
+			{
+				check=true;
+			}
+	});
+	if(check)
+		{$("button").removeAttr("disabled");
+		 $("button").css({"border":"1px solid #c40000","background-color":"#c40000","color":"white"});
+		}
+	else
+		{$("button").attr("disabled","");
+		 $("button").css({"border":"1px solid gray","background-color":"gray","color":"#333333"});
+		}
+}
+
+function checkSelectAll(){
+	var checkedAll=true;
+	$("tr").each(function(){
+		if($(this).attr("selectit")=="no")
+			checkedAll=false;
+	});
+	if(checkedAll)
+		$(".selectAll").each(function(){
+			$(this).attr("src","cartSelected.png");
+		});
+	else
+		$(".selectAll").each(function(){
+			$(this).attr("src","cartNotSelected.png");
+		});
+}
+$(function(){
+	$("img.choose").click(function(){
+		if($(this).parent().parent().parent().attr("selectit")=="no")
+			{$(this).parent().parent().parent().css("background-color","pink");
+			 $(this).attr("src","cartSelected.png");
+			 $(this).parent().parent().parent().attr("selectit","yes");
+			}
+		else
+			{$(this).parent().parent().parent().css("background-color","white");
+			 $(this).attr("src","cartNotSelected.png");
+			 $(this).parent().parent().parent().attr("selectit","no");
+			}
+		checkSelectAll();
+		synThreeTotal();
+		buttonDisplay();
+	});
+	$("img.selectAll").click(function(){
+		if($(".selectAll").attr("src")=="cartNotSelected.png")
+		{	$(".selectAll").attr("src","cartSelected.png")
+			$("img.choose").each(function(){
+					$(this).parent().parent().parent().css("background-color","pink");
+					$(this).attr("src","cartSelected.png");
+					$(this).parent().parent().parent().attr("selectit","yes");
+			});
+		}
+		else{
+			$(".selectAll").attr("src","cartNotSelected.png")
+			$("img.choose").each(function(){
+					$(this).parent().parent().parent().css("background-color","white");
+					$(this).attr("src","cartNotSelected.png");
+					$(this).parent().parent().parent().attr("selectit","no");
+			});
+			}
+		checkSelectAll();
+		synThreeTotal();
+		buttonDisplay();
+	});
+	
+	$("input").keyup(function(){
+		stock=parseInt($(this).parent().parent().parent().attr("stock"));
+		realInput=parseInt($(this).val());
+		if(isNaN(realInput))
+			$(this).val(1);
+		else
+		{	if(realInput<0)
+				$(this).val(0);
+			if(realInput>stock)
+				$(this).val(stock);
+			else
+				$(this).val(realInput);
+		}
+	
+	nowSinglePrice=parseInt($(this).parent().parent().parent().find(".nowSinglePrice").text());
+	finalInput=parseInt($(this).val());
+	eachTotalMoney=nowSinglePrice*finalInput;
+	$(this).parent().parent().parent().find(".eachTotalMoney").text(eachTotalMoney);
+	
+		checkSelectAll();
+		synThreeTotal();
+		buttonDisplay();
+	});
+	
+	$(".increase").click(function(){
+		stock=parseInt($(this).parent().parent().parent().parent().attr("stock"));
+		realInput=parseInt($(this).parent().parent().find("input").val());
+		if(realInput+1<=stock)
+			$(this).parent().parent().find("input").val(realInput+1)
+		nowSinglePrice=parseInt($(this).parent().parent().parent().parent().find(".nowSinglePrice").text());
+		finalInput=parseInt($(this).parent().parent().find("input").val());
+		eachTotalMoney=nowSinglePrice*finalInput;
+		$(this).parent().parent().parent().parent().find(".eachTotalMoney").text(eachTotalMoney);
+	
+			checkSelectAll();
+			synThreeTotal();
+			buttonDisplay();
+	});
+	
+	$(".decrease").click(function(){
+		stock=parseInt($(this).parent().parent().parent().parent().attr("stock"));
+		realInput=parseInt($(this).parent().parent().find("input").val());
+		if(realInput-1>0)
+			$(this).parent().parent().find("input").val(realInput-1)
+		nowSinglePrice=parseInt($(this).parent().parent().parent().parent().find(".nowSinglePrice").text());
+		finalInput=parseInt($(this).parent().parent().find("input").val());
+		eachTotalMoney=nowSinglePrice*finalInput;
+		$(this).parent().parent().parent().parent().find(".eachTotalMoney").text(eachTotalMoney);
+	
+			checkSelectAll();
+			synThreeTotal();
+			buttonDisplay();
+	});
+});
+</script>
+<style>
+.cartP{height:70px !important;
+border:1px solid gray;
+width:70px !important;
+}
+
+tr{border:1px solid red;
+display:block;
+padding:10px 0 10px 18px;
+width:1050px;
+}
+
+.t2{width:450px;
+padding-left:20px;}
+.t2 a{display:block;
+margin-bottom:15px;
+}
+.preSinglePrice{text-decoration:line-through;
+font-size:12px;
+color:gray;
+padding-left:10px;}
+.nowSinglePrice{font-size:17px;
+color:#c40000;
+font-weight:bold;}
+.t3{padding-right:50px;}
+
+.t4 span{font-size:17px;
+color:#c40000;
+font-weight:bold;
+margin-left:20px;
+margin-right:20px;}
+
+.t5 a{color:black;
+margin-left:20px;
+position:relative;
+top:-45px;
+}
+
+
+</style>
+<body>
+<div style="width:1100px;margin:0 auto;padding:20px;border:1px solid red">
+	<div class="pull-right">
+		<span style="font-size:12px;">已选商品（不含运费）</span>￥
+		<span class="totalMoney"style="color:#c40000;font-size:15px;font-weight:bold">0.00</span>
+		<button style="border:1px solid gray;background-color:gray;" disabled="disabled">结算</button>
+	</div>
+	
+	<div id="infoBar"style="clear:both;margin:40px 0 40px 20px;">
+		<a href="#"><img style="position:relative;top:-2px;"src="cartNotSelected.png" class="selectAll"></a>全选
+		<span style="margin-left:100px;">商品信息</span>
+		<span style="margin-left:350px;">单价</span>
+		<span style="margin-left:100px;">数量</span>
+		<span style="margin-left:150px;">金额</span>
+		<span style="margin-left:100px;">操作</span>
+	</div>
+	<div class="proDetail">
+		<table>
+			<tbody>
+				<tr  stock="66" selectit="no">
+					<td class="t1">
+						<a href="#"><img class="choose"style="position:relative;top:-2px;"src="cartNotSelected.png" ></a>
+						<img class="cartP"src="cartP1.jpg">
+					</td>
+					<td class="t2">
+						<a href="#">美国iRobot扫地机器人吸尘器全自动家用智能扫地机650 天猫电器城</a>
+						<img src="creditcard.png">
+						<img src="7day.png">
+						<img src="promise.png">
+					</td>
+					<td class="t3">
+						<span class="preSinglePrice">￥7580.00</span>
+						<br/>
+						<font color="#c40000"><b>￥<b></font><span class="nowSinglePrice">5306.00</span>
+					</td>
+					<td>
+						<div style="font-size:12px;color:#A4A4B9;"> 
+						<input value="1"class="input"type="text"style="border:1px solid #999;height:30px;width:60px;padding:5px 5px 5px 0;">
+						<span style="display:inline-block;vertical-align:middle;position:relative;top:-1px;">
+						<a class="increase"href="#"style="display:block;border:1px solid #999;height:15px;width:25px;text-align:center;margin-bottom:2px;"><img src="increase.png"style="margin-bottom:7px;"></a>
+						<a class="decrease"href="#"style="display:block;border:1px solid #999;height:15px;width:25px;text-align:center;"><img src="decrease.png"style="margin-bottom:7px;"></a>
+						</span>
+						件 
+						<span> 库存66件
+						</span>
+						</div>
+					</td>
+					<td class="t4">
+						<font color="#c40000"style="position:relative;left:20px;"><b>￥<b></font><span class="eachTotalMoney">5306.00<span>
+					</td>
+					<td class="t5 pull-right">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				<tr  stock="99" selectit="no">
+					<td class="t1">
+						<a href="#"><img class="choose"style="position:relative;top:-2px;"src="cartNotSelected.png"></a>
+						<img class="cartP"src="xiaomi6.jpg">
+					</td>
+					<td class="t2">
+						<a href="#">小米6垃圾只能手机哈哈哈哈哈 天猫垃圾城</a>
+						<img src="creditcard.png">
+						<img src="7day.png">
+						<img src="promise.png">
+					</td>
+					<td class="t3">
+						<span class="preSinglePrice">￥不要钱</span>
+						<br/>
+						<font color="#c40000"><b>￥<b></font><span class="nowSinglePrice">1999.00</span>
+					</td>
+					<td>
+						<div style="font-size:12px;color:#A4A4B9;"> 
+						<input value="1"class="input"type="text"style="border:1px solid #999;height:30px;width:60px;padding:5px 5px 5px 0;">
+						<span style="display:inline-block;vertical-align:middle;position:relative;top:-1px;">
+						<a class="increase"href="#"style="display:block;border:1px solid #999;height:15px;width:25px;text-align:center;margin-bottom:2px;"><img src="increase.png"style="margin-bottom:7px;"></a>
+						<a class="decrease"href="#"style="display:block;border:1px solid #999;height:15px;width:25px;text-align:center;"><img src="decrease.png"style="margin-bottom:7px;"></a>
+						</span>
+						件 
+						<span> 库存99件
+						</span>
+						</div>
+					</td>
+					<td class="t4">
+						<font color="#c40000"style="position:relative;left:20px;"><b>￥<b></font><span class="eachTotalMoney">1999.00<span>
+					</td>
+					<td class="t5 pull-right">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+	<div style="background-color:lightgray;height:50px;margin-top:20px;width:100%;">
+		<div style="display:inline-block;margin-top:10px;margin-left:20px;">
+			<a href="#"><img src="cartNotSelected.png" class="selectAll"></a>
+			全选
+		</div>
+		<span class="pull-right">
+		已选<b><span style="color:#c40000;"class="sumNumber">0</span></b>件商品，总计
+			<b><span style="color:#c40000;"class="totalMoney">0.00</span></b>元
+		<button disabled="disabled"style="width:100px;height:50px;border:1px solid gray;background-color:gray">结算</button>
+		</span>
+	
+	</div>
+
+	<div style="clear:both;"></div>
+
+
+</div>
+</body>

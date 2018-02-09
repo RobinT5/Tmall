@@ -1,0 +1,125 @@
+﻿<html><head></head><body>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/jquery/2.0.0/jquery.min.js"></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+
+<style>
+thead td{border-bottom:2px solid lightblue;
+padding-bottom:2px;
+border-right:5px solid transparent;}
+table{font-size:12px;}
+</style>
+
+<script>
+$(function(){
+	$("#input").click(function(){
+		$(this).hide();
+		$("textarea").show();
+		$("#tips").show();
+		$("#tipsDiv").css("height","100px");
+	});
+	
+	$(document).mouseup(function(e){
+		
+		if($(e.target)[0].tagName==$("textarea")[0].tagName)
+		                            ;
+		else
+			{
+			$("input").val($("textarea").val());
+			$("input").show();
+			$("textarea").hide();
+			$("#tips").hide();
+			$("#tipsDiv").css("height","50px");
+			}
+	});
+	
+});
+</script>
+
+<body>
+<div style="margin:20px auto;width:1000px;">
+	<div style="font-size:20px;font-weight:bold;margin:20px 0 50px 20px;">确认订单信息</div>
+	<table style="margin-left:20px;">
+		<thead>
+			<tr>
+				<td colspan="2"><img src="smallTmall.png"height="20px;">电偶：舔毛欧普<img src="wangwang.png"></td>
+				<td align="center">单价</td>
+				<td align="center">单价</td>
+				<td align="center">单价</td>
+				<td width="200px"align="center">单价</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td height="60px"style="padding-right:20px;">
+				<img src="bills1.jpg"height="50px;" style="margin:auto;">
+				</td>
+				<td style="border-bottom:1px gray solid;"width="450px">
+				<a href="#">Philips/飞利浦 HR1897/30破壁微榨原汁机 多功能家用果汁榨汁机</a>
+				<div>
+				<img title="xingyk"src="creditcard.png">
+				<img src="creditcard.png">
+				<img src="creditcard.png">
+				</div>
+				</td>
+				<td style="border-bottom:1px solid gray"align="center"width="100px;">
+					￥3250.50
+				</td>
+				<td  style="border-bottom:1px solid gray"align="center">
+				2
+				</td>
+				<td align="center"width="100px;"style="border-bottom:1px solid gray;color:#c40000";>
+					<b>￥6501.00</b>
+				</td>
+				<td rowspan="2" style="padding-left:20px;">
+					<input type="radio" name="way" id="normal" checked=""><label for="normal">普通配送</label>
+					<input type="radio" name="way" id="fly"><label for="fly">普通配送</label>
+					<select style="padding-left:0;width:150px;"class="form-control">
+						<option>快递：免邮</option>
+						<option>快递：10快</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td height="60px">
+				<img src="bills1.jpg"height="50px;" style="margin:auto;">
+				</td>
+				<td width="450px">
+				<a href="#">Philips/飞利浦 HR1897/30破壁微榨原汁机 多功能家用果汁榨汁机</a>
+				<div>
+				<img src="creditcard.png">
+				<img src="creditcard.png">
+				<img src="creditcard.png">
+				</div>
+				</td>
+				<td  align="center"width="100px;">
+					￥3250.50
+				</td>
+				<td align="center">
+				2
+				</td>
+				<td align="center"style="color:#c40000";>
+					<b>￥6501.00</b>
+				</td>
+		
+			</tr>
+		</tbody>
+	</table>
+	<div id="tipsDiv"style="background-color:#F2F6FF;height:50px;width:980px;margin-left:20px;border-top:2px solid lightblue;">
+		<span style="position:absolute;font-size:12px;color:gray;display:inline-block;margin:20px 0 0 50px;">给卖家留言:</span>
+		<span id="tips"style="display:none;color:red;position:absolute;margin-top:40px;margin-left:70px;font-size:12px;">注意：</span>
+		<input placeholder="123"style="margin-left:120px;margin-top:20px;height:20px;"type="text" id="input">
+		<textarea placeholder="123"style="height:70px;width:500px;margin-left:120px;margin-top:20px;display:none;"></textarea>
+		<span style="font-size:12px;color:gray;margin-right:20px;display:inline-block;margin-top:20px;"class="pull-right">店铺合计(含运费): ￥9,152.25</span>
+	</div>
+	<div style="margin:50px 0;">
+	<span style="margin-right:20px;color:#c40000;font-size:20px;font-weight:bold;"class="pull-right">￥9,152.25</span>
+	<span style="display:inline-block;padding-top:7px;font-size:12px;color:gray;"class="pull-right">是付款:</span>
+	</div>
+	<div>
+		<button class="pull-right"style="margin:50px 0;clear:both;background-color:#c40000;border:1px solid #c40000;height:50px;width:200px;color:white;font-weight:bold">提交订单</button>
+	</div>
+</div>
+</body>
